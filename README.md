@@ -36,7 +36,6 @@ Raw fields mapped to Common Information Model standards (src, src_user, dest_por
 
 **SPL Macros**
 - `soc_base_filter` — controls base index reference across all searches from one place
-- `soc_brute_threshold(N)` — parameterized threshold for brute force detection
 
 **Correlation Alerts**
 
@@ -47,7 +46,6 @@ Raw fields mapped to Common Information Model standards (src, src_user, dest_por
 | SOC - Lateral Movement | Office app spawning PowerShell/cmd | T1059.001, T1566 |
 | SOC - DNS Tunneling | 100+ DNS queries/min or long subdomains | T1071.004 |
 
-All four scheduled via cron expression `*/5 * * * *`
 
 ---
 
@@ -69,44 +67,6 @@ All four scheduled via cron expression `*/5 * * * *`
 - Python 3.x
 - pip install python-dotenv requests
 
-### Steps
-
-1. Clone the repo
-```bash
-git clone https://github.com/madhumithac588/splunk-cribl-soc-lab.git
-cd splunk-cribl-soc-lab
-```
-
-2. Copy .env.example to .env and fill in your values
-```bash
-cp .env.example .env
-```
-
-3. Pull and run Splunk
-```bash
-docker run -d --name splunk-siem -p 8000:8000 -p 8088:8088 \
--e SPLUNK_START_ARGS=--accept-license \
--e SPLUNK_PASSWORD=your_password \
-splunk/splunk:9.2.1
-```
-
-4. Pull and run Cribl
-```bash
-docker run -d --name cribl-stream -p 9000:9000 -p 9088:8088 \
--e CRIBL_ADMIN_USERNAME=admin \
--e CRIBL_ADMIN_PASSWORD=your_password \
-cribl/cribl:latest
-```
-
-5. Run the attack simulator
-```bash
-python scripts/generate_logs.py
-```
-
-6. Open Splunk at http://localhost:8000 and search:
-index=soc_logs | stats count by sourcetype
-
----
 
 ## Key SPL Queries
 
