@@ -14,19 +14,6 @@ Log Generator (Python) → Cribl Stream → Splunk Enterprise
 
 ---
 
-## Project Structure
-splunk-cribl-soc-lab/
-
-├── scripts/
-
-│   └── generate_logs.py       # 4-phase attack simulator
-
-├── .env.example               # Environment variable template
-
-└── .gitignore
-
----
-
 ## Cribl Pipeline — 5 Stages
 
 | Stage | What it does |
